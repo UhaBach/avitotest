@@ -1,5 +1,3 @@
-CREATE DATABASE avitotest;
-
 CREATE TABLE users (
     id bigserial not null primary key,
     name varchar(255) not null check(name !='')

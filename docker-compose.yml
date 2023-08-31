@@ -12,12 +12,12 @@ services:
   db:
     restart: always
     volumes:
-      - ./db:/docker-entrypoint-initdb.d/
-    image: postgres:latest
-    ports:
-      - 5436:5432
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgres-data:/var/lib/postgresql/data
+    image: postgres
     environment:
-      POSTGRES_DATABASE: avitotest
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: qwerty
-      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+
+volumes:
+  postgres-data:
