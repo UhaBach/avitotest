@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  server:
+    build: ./
+    command: ./go-app
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+  db:
+    restart: always
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+    image: postgres:latest
+    ports:
+      - 5436:5432
+    environment:
+      POSTGRES_DATABASE: avitotest
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_HOST_AUTH_METHOD: trust
